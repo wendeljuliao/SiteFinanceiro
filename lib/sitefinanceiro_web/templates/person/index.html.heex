@@ -1,0 +1,20 @@
+<h1>Login</h1>
+
+<div class="row mb-3">
+  <div class="col">
+    <label for="inputEmail" class="form-label">Email</label>
+    <input type="text" class="form-control" id="inputEmail" name="email"/>
+  </div>
+</div>
+
+<div class="row mb-3">
+  <div class="col">
+    <label for="inputPassword" class="form-label">Senha</label>
+    <input type="password" class="form-control" id="inputPassword" name="password"/>
+  </div>
+</div>
+<div class="row mb-3">
+  <a href={ Routes.person_path(@conn, :new) }>Cadastrar-se</a>
+</div>
+
+<button type="submit" class="btn btn-primary">Entrar</button>
