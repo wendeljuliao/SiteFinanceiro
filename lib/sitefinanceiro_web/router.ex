@@ -19,12 +19,14 @@ defmodule SitefinanceiroWeb.Router do
 
     #get "/", PageController, :index
     get "/", HomeController, :index
+
+    get "/financial", FinancialController, :index
+    get "/financial/new", FinancialController, :new
+    get "/financial/reports", FinancialController, :reports
     
     get "/login", PersonController, :index
     get "/cadastro", PersonController, :new
 
-    get "/financial", FinancialController, :index
-    get "/financial/new", FinancialController, :new
     
   end
 
