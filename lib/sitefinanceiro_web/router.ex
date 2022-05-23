@@ -1,6 +1,8 @@
 defmodule SitefinanceiroWeb.Router do
   use SitefinanceiroWeb, :router
 
+  import SitefinanceiroWeb.UserAuth
+
   pipeline :browser do
     plug :accepts, ["html"]
     plug :fetch_session
@@ -8,26 +10,53 @@ defmodule SitefinanceiroWeb.Router do
     plug :put_root_layout, {SitefinanceiroWeb.LayoutView, :root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug :fetch_current_user
   end
 
   pipeline :api do
     plug :accepts, ["json"]
   end
 
-  scope "/", SitefinanceiroWeb do
-    pipe_through :browser
+  ## Authentication routes
 
-    #get "/", PageController, :index
-    get "/", HomeController, :index
+  scope "/", SitefinanceiroWeb do
+    pipe_through [:browser, :redirect_if_user_is_authenticated]
+
+    #get "/login", PersonController, :index
+    #get "/cadastro", PersonController, :new
+
+    get "/users/register", UserRegistrationController, :new
+    post "/users/register", UserRegistrationController, :create
+    get "/users/log_in", UserSessionController, :new
+    post "/users/log_in", UserSessionController, :create
+    #get "/users/reset_password", UserResetPasswordController, :new
+    #post "/users/reset_password", UserResetPasswordController, :create
+    #get "/users/reset_password/:token", UserResetPasswordController, :edit
+    #put "/users/reset_password/:token", UserResetPasswordController, :update
+  end
+
+  scope "/", SitefinanceiroWeb do
+    pipe_through [:browser, :require_authenticated_user]
 
     get "/financial", FinancialController, :index
     get "/financial/new", FinancialController, :new
     get "/financial/reports", FinancialController, :reports
-    
-    get "/login", PersonController, :index
-    get "/cadastro", PersonController, :new
 
-    
+    #get "/users/settings", UserSettingsController, :edit
+    #put "/users/settings", UserSettingsController, :update
+    #get "/users/settings/confirm_email/:token", UserSettingsController, :confirm_email
+  end
+
+  scope "/", SitefinanceiroWeb do
+    pipe_through [:browser]
+
+    get "/", HomeController, :index
+
+    delete "/users/log_out", UserSessionController, :delete
+    get "/users/confirm", UserConfirmationController, :new
+    post "/users/confirm", UserConfirmationController, :create
+    get "/users/confirm/:token", UserConfirmationController, :edit
+    post "/users/confirm/:token", UserConfirmationController, :update
   end
 
   # Other scopes may use custom stacks.
@@ -63,4 +92,6 @@ defmodule SitefinanceiroWeb.Router do
       forward "/mailbox", Plug.Swoosh.MailboxPreview
     end
   end
+
+  
 end

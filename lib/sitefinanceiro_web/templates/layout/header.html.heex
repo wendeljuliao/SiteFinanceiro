@@ -17,18 +17,29 @@
       </button>
 
       <div class="collapse navbar-collapse" id="navbarCollapse">
-        <ul class="navbar-nav me-auto mb-2 mb-md-0">
+        <ul class="navbar-nav me-auto mb-2 mb-md-0" style="display:flex; justify-content:center; align-items:center">
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href={ Routes.home_path(@conn, :index)  }>Home</a>
           </li>
+          <%= if @current_user do %>
           
-          <li class="nav-item">
-            <a class="nav-link" href={ Routes.person_path(@conn, :index)  }>Login</a>
-          </li>
-
           <li class="nav-item">
             <a class="nav-link" href={ Routes.financial_path(@conn, :index)  }>Financeiro</a>
           </li>
+          <li class="nav-item">
+            <%= link "Log out", to: Routes.user_session_path(@conn, :delete), method: :delete %>
+          </li>
+          
+          <li class="nav-item">
+            <p style="color: white; margin: 0 20px"><%= @current_user.email %></p>
+          </li>
+          
+          <% else %>
+          <li class="nav-item">
+            <a class="nav-link" href={ Routes.user_session_path(@conn, :new)  }>Login</a>
+          </li>
+          
+          <% end %>
         </ul>
       </div>
 
