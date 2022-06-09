@@ -23,21 +23,24 @@
           </li>
           <%= if @current_user do %>
           
-          <li class="nav-item">
-            <a class="nav-link" href={ Routes.financial_path(@conn, :index)  }>Financeiro</a>
-          </li>
-          <li class="nav-item">
-            <%= link "Log out", to: Routes.user_session_path(@conn, :delete), method: :delete %>
-          </li>
-          
-          <li class="nav-item">
-            <p style="color: white; margin: 0 20px"><%= @current_user.email %></p>
-          </li>
+            <li class="nav-item">
+              <%= link "Receitas", to: Routes.receita_path(@conn, :index), class: "nav-link" %>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href={ Routes.financial_path(@conn, :index)  }>Financeiro</a>
+            </li>
+            <li class="nav-item">
+              <%= link "Log out", to: Routes.user_session_path(@conn, :delete), method: :delete %>
+            </li>
+            
+            <li class="nav-item">
+              <p style="color: white; margin: 0 20px"><%= @current_user.email %></p>
+            </li>
           
           <% else %>
-          <li class="nav-item">
-            <a class="nav-link" href={ Routes.user_session_path(@conn, :new)  }>Login</a>
-          </li>
+            <li class="nav-item">
+              <a class="nav-link" href={ Routes.user_session_path(@conn, :new)  }>Login</a>
+            </li>
           
           <% end %>
         </ul>

@@ -1,0 +1,22 @@
+<h1>Mostrar Receita</h1>
+
+<ul>
+
+  <li>
+    <strong>Descrição:</strong>
+    <%= @receita.description %>
+  </li>
+
+  <li>
+    <strong>Valor:</strong>
+    <%= @receita.value %>
+  </li>
+
+</ul>
+
+<div class="text-center" style="margin-top: 20px">
+  <span><%= link "Editar", to: Routes.receita_path(@conn, :edit, @receita), class: "btn btn-primary", style: "width: 150px"  %></span>
+</div>
+<div class="text-center" style="margin-top: 20px">
+  <span><%= link "Voltar", to: Routes.receita_path(@conn, :index), class: "btn btn-dark", style: "width: 150px" %></span>
+</div>

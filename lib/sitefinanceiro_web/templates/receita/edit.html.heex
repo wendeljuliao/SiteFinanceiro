@@ -1,0 +1,7 @@
+<h1>Editar Receita</h1>
+
+<%= render "form.html", Map.put(assigns, :action, Routes.receita_path(@conn, :update, @receita)) %>
+
+<div class="text-center" style="margin-top: 20px">
+  <span><%= link "Voltar", to: Routes.receita_path(@conn, :index), class: "btn btn-dark", style: "width: 150px" %></span>
+</div>

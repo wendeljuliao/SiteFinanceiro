@@ -57,6 +57,8 @@ defmodule SitefinanceiroWeb.Router do
     post "/users/confirm", UserConfirmationController, :create
     get "/users/confirm/:token", UserConfirmationController, :edit
     post "/users/confirm/:token", UserConfirmationController, :update
+
+    resources "/receitas", ReceitaController
   end
 
   # Other scopes may use custom stacks.
