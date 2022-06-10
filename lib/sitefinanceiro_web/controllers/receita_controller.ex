@@ -5,7 +5,8 @@ defmodule SitefinanceiroWeb.ReceitaController do
   alias Sitefinanceiro.Contas.Receita
 
   def index(conn, _params) do
-    receitas = Contas.list_receitas()
+    
+    receitas = Contas.list_receitas(%{user_id: conn.assigns.current_user.id})
     render(conn, "index.html", receitas: receitas)
   end
 
@@ -15,7 +16,9 @@ defmodule SitefinanceiroWeb.ReceitaController do
   end
 
   def create(conn, %{"receita" => receita_params}) do
-    case Contas.create_receita(receita_params) do
+    IO.inspect(conn.assigns.current_user.id )
+    aux_receita_params = %{description: receita_params["description"], value: receita_params["value"], user_id: conn.assigns.current_user.id}
+    case Contas.create_receita(aux_receita_params) do
       {:ok, receita} ->
         conn
         |> put_flash(:info, "Receita created successfully.")

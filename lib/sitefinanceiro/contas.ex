@@ -17,8 +17,10 @@ defmodule Sitefinanceiro.Contas do
       [%Receita{}, ...]
 
   """
-  def list_receitas do
-    Repo.all(Receita)
+  def list_receitas(attrs) do
+    IO.inspect(attrs.user_id)
+    query = from(Receita, where: [user_id: ^attrs.user_id])
+    Repo.all(query)
   end
 
   @doc """
@@ -50,6 +52,8 @@ defmodule Sitefinanceiro.Contas do
 
   """
   def create_receita(attrs \\ %{}) do
+    IO.inspect("Oi")
+    IO.inspect(attrs)
     %Receita{}
     |> Receita.changeset(attrs)
     |> Repo.insert()

@@ -42,6 +42,7 @@ defmodule SitefinanceiroWeb.Router do
     get "/financial/new", FinancialController, :new
     get "/financial/reports", FinancialController, :reports
 
+    resources "/receitas", ReceitaController
     #get "/users/settings", UserSettingsController, :edit
     #put "/users/settings", UserSettingsController, :update
     #get "/users/settings/confirm_email/:token", UserSettingsController, :confirm_email
@@ -58,7 +59,6 @@ defmodule SitefinanceiroWeb.Router do
     get "/users/confirm/:token", UserConfirmationController, :edit
     post "/users/confirm/:token", UserConfirmationController, :update
 
-    resources "/receitas", ReceitaController
   end
 
   # Other scopes may use custom stacks.
