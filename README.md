@@ -1,19 +1,16 @@
 # Sitefinanceiro
 
-To start your Phoenix server:
+## Nome dos Integrantes
 
-  * Install dependencies with `mix deps.get`
-  * Create and migrate your database with `mix ecto.setup`
-  * Start Phoenix endpoint with `mix phx.server` or inside IEx with `iex -S mix phx.server`
+- Eduardo Diogenes - - NAB
+- Wendel Alves Julião Costa - 2020701 - NAB
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+## Requisitos implementados
 
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
-
-## Learn more
-
-  * Official website: https://www.phoenixframework.org/
-  * Guides: https://hexdocs.pm/phoenix/overview.html
-  * Docs: https://hexdocs.pm/phoenix
-  * Forum: https://elixirforum.com/c/phoenix-forum
-  * Source: https://github.com/phoenixframework/phoenix
+1. A aplicação deve armazenar dados em um banco de dados PostgreSQL ou MySQL utilizando o framework Ecto;
+2. A aplicação deve permitir que um usuário possa realizar a criação, edição, listagem e exclusão de receitas e despesas;
+3. A aplicação deve possuir um layout customizado baseado em bootstrap ou um outro framework de UI a sua escolha;
+4. Criar o relacionamento entre as entidades utilizadas na aplicação (a princípio deve-se ter às entidades usuário e despesa/receita. Contudo pode-se criar quantas entidades achar necessária);
+5. Criar uma página de relatório mensal das despesas e receitas que exibe um gráfico com a evolução das despesas e receitas de um determinado mês, as cinco maiores despesas e as cinco maiores receitas;
+6. A aplicação deve permitir que um usuário realize login na aplicação (autenticação);
+7. A aplicação deve utilizar o recurso de LiveView para atualizar os dados em tempo real;

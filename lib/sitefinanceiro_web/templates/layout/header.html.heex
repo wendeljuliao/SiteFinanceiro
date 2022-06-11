@@ -27,7 +27,7 @@
               <%= link "Receitas", to: Routes.receita_path(@conn, :index), class: "nav-link" %>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href={ Routes.financial_path(@conn, :index)  }>Financeiro</a>
+              <%= link "ReceitasLiveView", to: Routes.receita2_index_path(@conn, :index), class: "nav-link" %>
             </li>
             <li class="nav-item">
               <%= link "Log out", to: Routes.user_session_path(@conn, :delete), method: :delete %>

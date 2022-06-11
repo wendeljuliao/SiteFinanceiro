@@ -43,6 +43,13 @@ defmodule SitefinanceiroWeb.Router do
     get "/financial/reports", FinancialController, :reports
 
     resources "/receitas", ReceitaController
+
+    live "/receitas2", Receita2Live.Index, :index
+    live "/receitas2/new", Receita2Live.Index, :new
+    live "/receitas2/:id/edit", Receita2Live.Index, :edit
+
+    live "/receitas2/:id", Receita2Live.Show, :show
+    live "/receitas2/:id/show/edit", Receita2Live.Show, :edit
     #get "/users/settings", UserSettingsController, :edit
     #put "/users/settings", UserSettingsController, :update
     #get "/users/settings/confirm_email/:token", UserSettingsController, :confirm_email
