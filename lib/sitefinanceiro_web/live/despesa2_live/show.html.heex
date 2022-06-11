@@ -1,0 +1,31 @@
+<h1>Show Despesa2</h1>
+
+<%= if @live_action in [:edit] do %>
+  <.modal return_to={Routes.despesa2_show_path(@socket, :show, @despesa2)}>
+    <.live_component
+      module={SitefinanceiroWeb.Despesa2Live.FormComponent}
+      id={@despesa2.id}
+      title={@page_title}
+      action={@live_action}
+      despesa2={@despesa2}
+      return_to={Routes.despesa2_show_path(@socket, :show, @despesa2)}
+    />
+  </.modal>
+<% end %>
+
+<ul>
+
+  <li>
+    <strong>Description:</strong>
+    <%= @despesa2.description %>
+  </li>
+
+  <li>
+    <strong>Value:</strong>
+    <%= @despesa2.value %>
+  </li>
+
+</ul>
+
+<span><%= live_patch "Edit", to: Routes.despesa2_show_path(@socket, :edit, @despesa2), class: "button" %></span> |
+<span><%= live_redirect "Back", to: Routes.despesa2_index_path(@socket, :index) %></span>

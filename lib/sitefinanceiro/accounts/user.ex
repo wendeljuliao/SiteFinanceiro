@@ -12,6 +12,7 @@ defmodule Sitefinanceiro.Accounts.User do
     has_many :despesas, Sitefinanceiro.Contas.Despesa
 
     has_many :receitas2, Sitefinanceiro.Timeline.Receita2
+    has_many :despesas2, Sitefinanceiro.Timeline2.Despesa2
 
     timestamps()
   end

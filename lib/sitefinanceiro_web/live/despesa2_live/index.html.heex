@@ -1,0 +1,49 @@
+<div class="container">
+
+  <h1>Listando Despesas Live View</h1>
+
+  <%= if @live_action in [:new, :edit] do %>
+    <.modal return_to={Routes.despesa2_index_path(@socket, :index)}>
+      <.live_component
+        module={SitefinanceiroWeb.Despesa2Live.FormComponent}
+        id={@despesa2.id || :new}
+        title={@page_title}
+        idAux={@user.id}
+        action={@live_action}
+        despesa2={@despesa2}
+        return_to={Routes.despesa2_index_path(@socket, :index)}
+      />
+    </.modal>
+  <% end %>
+
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Descrição</th>
+        <th>Valor (R$)</th>
+
+        <th></th>
+      </tr>
+    </thead>
+    <tbody id="despesas2" phx-update="prepend">
+      <%= for despesa2 <- @despesas2 do %>
+        <tr id={"despesa2-#{despesa2.id}"}>
+          <td><%= despesa2.description %></td>
+          <td><%= despesa2.value %></td>
+
+          <td>
+            <span><%= live_redirect "Mostrar", to: Routes.despesa2_show_path(@socket, :show, despesa2), class: "btn btn-info" %></span>
+            <span><%= live_patch "Editar", to: Routes.despesa2_index_path(@socket, :edit, despesa2), class: "btn btn-primary" %></span>
+            <span><%= link "Deletar", to: "#", phx_click: "delete", phx_value_id: despesa2.id, data: [confirm: "Are you sure?"], class: "btn btn-danger" %></span>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <div class="text-center">
+    <span><%= live_patch "Nova Despesa Live View", to: Routes.despesa2_index_path(@socket, :new), class: "btn btn-success" %></span>
+  </div>
+  <div class="text-center" style="margin-top: 20px">
+    <span><%= link "Ver Relatórios", to: Routes.financial_path(@socket, :reports), class: "btn btn-primary" %></span>
+  </div>
+</div>

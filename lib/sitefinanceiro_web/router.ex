@@ -51,6 +51,13 @@ defmodule SitefinanceiroWeb.Router do
 
     live "/receitas2/:id", Receita2Live.Show, :show
     live "/receitas2/:id/show/edit", Receita2Live.Show, :edit
+
+    live "/despesas2", Despesa2Live.Index, :index
+    live "/despesas2/new", Despesa2Live.Index, :new
+    live "/despesas2/:id/edit", Despesa2Live.Index, :edit
+
+    live "/despesas2/:id", Despesa2Live.Show, :show
+    live "/despesas2/:id/show/edit", Despesa2Live.Show, :edit
     #get "/users/settings", UserSettingsController, :edit
     #put "/users/settings", UserSettingsController, :update
     #get "/users/settings/confirm_email/:token", UserSettingsController, :confirm_email
