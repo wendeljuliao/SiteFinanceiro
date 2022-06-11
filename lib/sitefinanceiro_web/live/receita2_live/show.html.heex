@@ -1,0 +1,31 @@
+<h1>Mostrar Receita Live View</h1>
+
+<%= if @live_action in [:edit] do %>
+  <.modal return_to={Routes.receita2_show_path(@socket, :show, @receita2)}>
+    <.live_component
+      module={SitefinanceiroWeb.Receita2Live.FormComponent}
+      id={@receita2.id}
+      title={@page_title}
+      action={@live_action}
+      receita2={@receita2}
+      return_to={Routes.receita2_show_path(@socket, :show, @receita2)}
+    />
+  </.modal>
+<% end %>
+
+<ul>
+
+  <li>
+    <strong>Description:</strong>
+    <%= @receita2.description %>
+  </li>
+
+  <li>
+    <strong>Value:</strong>
+    <%= @receita2.value %>
+  </li>
+
+</ul>
+
+<span><%= live_patch "Edit", to: Routes.receita2_show_path(@socket, :edit, @receita2), class: "button" %></span> |
+<span><%= live_redirect "Back", to: Routes.receita2_index_path(@socket, :index) %></span>
