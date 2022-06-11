@@ -1,0 +1,48 @@
+<div class="container">
+
+  <h1>Listando Receitas Live View</h1>
+
+  <%= if @live_action in [:new, :edit] do %>
+    <.modal return_to={Routes.receita2_index_path(@socket, :index)}>
+      <.live_component
+        module={SitefinanceiroWeb.Receita2Live.FormComponent}
+        id={@receita2.id || :new}
+        title={@page_title}
+        idAux={@user.id}
+        action={@live_action}
+        receita2={@receita2}
+        return_to={Routes.receita2_index_path(@socket, :index)}
+      />
+    </.modal>
+  <% end %>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>Descrição</th>
+            <th>Valor</th>
+
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="receitas2" phx-update="prepend">
+          <%= for receita2 <- @receitas2 do %>
+            <tr id={"receita2-#{receita2.id}"}>
+              <td><%= receita2.description %></td>
+              <td><%= receita2.value %></td>
+
+              <td>
+                <span><%= live_redirect "Mostrar", to: Routes.receita2_show_path(@socket, :show, receita2), class: "btn btn-info" %></span>
+                <span><%= live_patch "Editar", to: Routes.receita2_index_path(@socket, :edit, receita2), class: "btn btn-primary" %></span>
+                <span><%= link "Deletar", to: "#", phx_click: "delete", phx_value_id: receita2.id, data: [confirm: "Are you sure?"], class: "btn btn-danger" %></span>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+  <div class="text-center">
+    <span><%= live_patch "Criar Receita Live View", to: Routes.receita2_index_path(@socket, :new), class: "btn btn-success" %></span>
+  </div>
+  <div class="text-center" style="margin-top: 20px">
+    <span><%= link "Ver Relatórios", to: Routes.financial_path(@socket, :reports), class: "btn btn-primary" %></span>
+  </div>
+</div>
