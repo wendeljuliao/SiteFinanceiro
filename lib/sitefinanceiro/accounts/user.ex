@@ -9,6 +9,7 @@ defmodule Sitefinanceiro.Accounts.User do
     field :confirmed_at, :naive_datetime
 
     has_many :receitas, Sitefinanceiro.Contas.Receita
+    has_many :despesas, Sitefinanceiro.Contas.Despesa
 
     timestamps()
   end

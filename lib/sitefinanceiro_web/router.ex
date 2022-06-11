@@ -43,6 +43,7 @@ defmodule SitefinanceiroWeb.Router do
     get "/financial/reports", FinancialController, :reports
 
     resources "/receitas", ReceitaController
+    resources "/despesas", DespesaController
     #get "/users/settings", UserSettingsController, :edit
     #put "/users/settings", UserSettingsController, :update
     #get "/users/settings/confirm_email/:token", UserSettingsController, :confirm_email
@@ -95,5 +96,5 @@ defmodule SitefinanceiroWeb.Router do
     end
   end
 
-  
+
 end

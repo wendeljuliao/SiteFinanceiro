@@ -27,6 +27,9 @@
               <%= link "Receitas", to: Routes.receita_path(@conn, :index), class: "nav-link" %>
             </li>
             <li class="nav-item">
+              <%= link "Despesas", to: Routes.despesa_path(@conn, :index), class: "nav-link" %>
+            </li>
+            <li class="nav-item">
               <a class="nav-link" href={ Routes.financial_path(@conn, :index)  }>Financeiro</a>
             </li>
             <li class="nav-item">

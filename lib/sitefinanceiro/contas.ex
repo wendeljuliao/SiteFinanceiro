@@ -7,6 +7,7 @@ defmodule Sitefinanceiro.Contas do
   alias Sitefinanceiro.Repo
 
   alias Sitefinanceiro.Contas.Receita
+  alias Sitefinanceiro.Contas.Despesa
 
   @doc """
   Returns the list of receitas.
@@ -20,6 +21,12 @@ defmodule Sitefinanceiro.Contas do
   def list_receitas(attrs) do
     IO.inspect(attrs.user_id)
     query = from(Receita, where: [user_id: ^attrs.user_id])
+    Repo.all(query)
+  end
+
+  def list_despesas(attrs) do
+    IO.inspect(attrs.user_id)
+    query = from(Despesa, where: [user_id: ^attrs.user_id])
     Repo.all(query)
   end
 
@@ -38,6 +45,7 @@ defmodule Sitefinanceiro.Contas do
 
   """
   def get_receita!(id), do: Repo.get!(Receita, id)
+  def get_despesa!(id), do: Repo.get!(Despesa, id)
 
   @doc """
   Creates a receita.
@@ -59,6 +67,14 @@ defmodule Sitefinanceiro.Contas do
     |> Repo.insert()
   end
 
+  def create_despesa(attrs \\ %{}) do
+    IO.inspect("Oi")
+    IO.inspect(attrs)
+    %Despesa{}
+    |> Despesa.changeset(attrs)
+    |> Repo.insert()
+  end
+
   @doc """
   Updates a receita.
 
@@ -74,6 +90,12 @@ defmodule Sitefinanceiro.Contas do
   def update_receita(%Receita{} = receita, attrs) do
     receita
     |> Receita.changeset(attrs)
+    |> Repo.update()
+  end
+
+  def update_despesa(%Despesa{} = despesa, attrs) do
+    despesa
+    |> Despesa.changeset(attrs)
     |> Repo.update()
   end
 
@@ -93,6 +115,10 @@ defmodule Sitefinanceiro.Contas do
     Repo.delete(receita)
   end
 
+  def delete_despesa(%Despesa{} = despesa) do
+    Repo.delete(despesa)
+  end
+
   @doc """
   Returns an `%Ecto.Changeset{}` for tracking receita changes.
 
@@ -105,4 +131,9 @@ defmodule Sitefinanceiro.Contas do
   def change_receita(%Receita{} = receita, attrs \\ %{}) do
     Receita.changeset(receita, attrs)
   end
+
+  def change_despesa(%Despesa{} = despesa, attrs \\ %{}) do
+    Despesa.changeset(despesa, attrs)
+  end
+
 end
