@@ -1,8 +1,11 @@
 defmodule SitefinanceiroWeb.FinancialController do
   use SitefinanceiroWeb, :controller
+  alias Sitefinanceiro.Contas
 
   def reports(conn, _params) do
-    render(conn, "reports.html")
+    receitas = Contas.list_receitas(%{user_id: conn.assigns.current_user.id})
+    despesas = Contas.list_despesas(%{user_id: conn.assigns.current_user.id})
+    render(conn, "reports.html", receitas: receitas, despesas: despesas)
   end
 
   def new(conn, _params) do
