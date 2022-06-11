@@ -43,6 +43,7 @@ defmodule SitefinanceiroWeb.Router do
     get "/financial/reports", FinancialController, :reports
 
     resources "/receitas", ReceitaController
+    resources "/despesas", DespesaController
 
     live "/receitas2", Receita2Live.Index, :index
     live "/receitas2/new", Receita2Live.Index, :new
@@ -102,5 +103,5 @@ defmodule SitefinanceiroWeb.Router do
     end
   end
 
-  
+
 end

@@ -1,0 +1,48 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <h1>Despesas</h1>
+
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Descrição</th>
+            <th scope="col">Valor (R$)</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            
+          </tr>
+        </thead>
+        <tbody>
+      <%= for despesa <- @despesas do %>
+          <tr>
+            <th scope="row"><%= despesa.id %></th>
+            <td><%= despesa.description %></td>
+            <td><%= despesa.value %></td>
+
+            <td>
+              <span ><%= link "Mostrar", to: Routes.despesa_path(@conn, :show, despesa), class: "btn btn-info" %></span>
+            </td>
+            <td>
+              <span><%= link "Editar", to: Routes.despesa_path(@conn, :edit, despesa), class: "btn btn-primary" %></span>
+            </td>
+            <td>
+              <span><%= link "Deletar", to: Routes.despesa_path(@conn, :delete, despesa), method: :delete, data: [confirm: "Você está certo disso?"], class: "btn btn-danger" %></span>
+            </td>
+          </tr>
+      <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="text-center">
+    <span><%= link "Criar Despesa", to: Routes.despesa_path(@conn, :new), class: "btn btn-success" %></span>
+  </div>
+
+  <div class="text-center" style="margin-top: 20px">
+    <span><%= link "Ver Relatórios", to: Routes.financial_path(@conn, :reports), class: "btn btn-primary" %></span>
+  </div>
+
+</div>

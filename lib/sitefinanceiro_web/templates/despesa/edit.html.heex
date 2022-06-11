@@ -1,0 +1,7 @@
+<h1>Editar Despesa</h1>
+
+<%= render "form.html", Map.put(assigns, :action, Routes.despesa_path(@conn, :update, @despesa)) %>
+
+<div class="text-center" style="margin-top: 20px">
+  <span><%= link "Voltar", to: Routes.despesa_path(@conn, :index), class: "btn btn-dark", style: "width: 150px" %></span>
+</div>

@@ -1,0 +1,22 @@
+<h1>Mostrar Despesa</h1>
+
+<ul>
+
+  <li>
+    <strong>Descrição:</strong>
+    <%= @despesa.description %>
+  </li>
+
+  <li>
+    <strong>Valor:</strong>
+    <%= @despesa.value %>
+  </li>
+
+</ul>
+
+<div class="text-center" style="margin-top: 20px">
+  <span><%= link "Editar", to: Routes.despesa_path(@conn, :edit, @despesa), class: "btn btn-primary", style: "width: 150px"  %></span>
+</div>
+<div class="text-center" style="margin-top: 20px">
+  <span><%= link "Voltar", to: Routes.despesa_path(@conn, :index), class: "btn btn-dark", style: "width: 150px" %></span>
+</div>
