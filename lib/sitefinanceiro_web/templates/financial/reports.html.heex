@@ -48,4 +48,95 @@
       </table>
     </div>
   </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+  
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+  <canvas id="myChart" style="width:100%;max-width:700px"></canvas>
+
+  <script type="text/javascript">
+    window.chart_data = <%= raw(Jason.encode!(fetch_chart_data @receitas)) %>
+    window.chart_labels = <%= raw(Jason.encode!(fetch_chart_labels @receitas)) %>
+  </script>
+
+  <script>
+    new Chart("myChart", {
+      type: "line",
+      data: {
+        //we make sure of the following variable to available in the template that uses this JS file and it act as X-Axis
+        labels: chart_labels,
+        datasets: [
+          {
+            label: "Valor Receita",
+    
+            // Adjust the colors and Background here if you need
+            backgroundColor: "rgba(155, 89, 182,0.2)",
+            borderColor: "rgba(142, 68, 173,1.0)",
+            pointBackgroundColor: "rgba(142, 68, 173,1.0)",
+    
+            //we make sure of the following variable to available in the template that uses this JS
+            data: chart_data,
+          },
+        ],
+      },
+      options: {
+        scales: {
+          yAxes: [
+            {
+              ticks: {
+                beginAtZero: true,
+              },
+            },
+          ],
+        },
+      },
+    });
+    </script>
+</div>
+<div class="col-md-6">
+  <canvas id="myChart2" style="width:100%;max-width:700px"></canvas>
+
+  <script type="text/javascript">
+    window.chart_data = <%= raw(Jason.encode!(fetch_chart_data @despesas)) %>
+    window.chart_labels = <%= raw(Jason.encode!(fetch_chart_labels @despesas)) %>
+  </script>
+
+  <script>
+    
+    new Chart("myChart2", {
+      type: "line",
+      data: {
+        //we make sure of the following variable to available in the template that uses this JS file and it act as X-Axis
+        labels: chart_labels,
+        datasets: [
+          {
+            label: "Valor Despesa",
+    
+            // Adjust the colors and Background here if you need
+            backgroundColor: "rgba(155, 89, 182,0.2)",
+            borderColor: "rgba(142, 68, 173,1.0)",
+            pointBackgroundColor: "rgba(142, 68, 173,1.0)",
+    
+            //we make sure of the following variable to available in the template that uses this JS
+            data: chart_data,
+          },
+        ],
+      },
+      options: {
+        scales: {
+          yAxes: [
+            {
+              ticks: {
+                beginAtZero: true,
+              },
+            },
+          ],
+        },
+      },
+    });
+    </script>
+    </div>
+  </div>
+  </div>
 </div>
