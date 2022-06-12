@@ -2,7 +2,7 @@
 
 ## Nome dos Integrantes
 
-- Eduardo Diogenes - - NAB
+- Eduardo Diogenes - 2010470 - NAB
 - Wendel Alves Julião Costa - 2020701 - NAB
 
 ## Requisitos implementados
